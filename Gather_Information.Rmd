@@ -306,3 +306,8 @@ if (identical(df_stats_all$team, df_pos_all$team)) {
 }
 ```
 
+```{r save-data, include= FALSE}
+save(df_all, file = "Data/processed_data.rda")
+
+```
+
