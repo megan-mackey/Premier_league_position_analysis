@@ -64,7 +64,6 @@ extract_stats <- function(df_raw, n_season = NULL) {
   ## Empty Shell
   df_output <- c()
 
-  ## Main Loop[]
   for (n_team in 1:20) {
 
     ## Extract

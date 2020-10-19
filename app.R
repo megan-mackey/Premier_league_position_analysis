@@ -1,5 +1,3 @@
-
-
 library(shiny)
 library(tidyverse)
 # load necessary data and code from helper files, including pre-made plots and
@@ -15,11 +13,24 @@ source("league_positions.R")
 # Define UI for application that draws a histogram
 ui <- navbarPage(
     "Economic Consequences of league position in the Premier league",
-    tabPanel("Model",
+    tabPanel("League Position",
              fluidPage(
-                 titlePanel("Arsenal Goals Conceded"),
-                     mainPanel(plotOutput("line_plot")))
-             ),
+                 titlePanel("League Position in a season"),
+                 mainPanel(plotOutput("line_plot")))
+    ),
+    selectInput("season", "Select a Season:",
+                choices = c("2005-2006",
+                            "2006-2007",
+                            "2007-2008",
+                            "2008-2009",
+                            "2009-2010",
+                            "2010-2011",
+                            "2011-2012",
+                            "2012-2013",
+                            "2013-2014",
+                            "2014-2015"),
+                selected = c("2005-2006"),
+                multiple = FALSE),
     tabPanel("Discussion",
              titlePanel("Discussion Title"),
              p("Tour of the modeling choices you made and 
@@ -34,13 +45,13 @@ ui <- navbarPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     output$line_plot <- renderPlot({
-        df_all_edit<- df_all %>%
-            filter(season == "2014-2015" & team == "Arsenal")
-        
-        ggplot(data = df_all_edit, aes(x = num_match, y = goal_conceded)) +
-            geom_col()+
-            labs(title = "Goals conceded by Arsenal in 2014-2015 season", x = "Match Number", y = "goals conceded")
-     
+        df_all %>%
+            filter(season == input$season) %>%
+            
+            ggplot(aes(x = num_match , y = position, color = team)) +
+            geom_line()+
+            labs(title = "Change in position over the selected season", 
+                 x = " Number of match", y = "League Position")
     })
 }
 
