@@ -16,8 +16,7 @@ ui <- navbarPage(
     tabPanel("League Position",
              fluidPage(
                  titlePanel("League Position in a season"),
-                 mainPanel(plotOutput("line_plot")))
-    ),
+                 mainPanel(plotOutput("line_plot"))),
     selectInput("season", "Select a Season:",
                 choices = c("2005-2006",
                             "2006-2007",
@@ -30,7 +29,7 @@ ui <- navbarPage(
                             "2013-2014",
                             "2014-2015"),
                 selected = c("2005-2006"),
-                multiple = FALSE),
+                multiple = FALSE)),
     tabPanel("Discussion",
              titlePanel("Discussion Title"),
              p("Tour of the modeling choices you made and 
