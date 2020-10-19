@@ -1,5 +1,6 @@
 library(shiny)
 library(tidyverse)
+library(gganimate)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
