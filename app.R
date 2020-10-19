@@ -50,7 +50,8 @@ server <- function(input, output) {
             ggplot(aes(x = num_match , y = position, color = team)) +
             geom_line()+
             labs(title = "Change in position over the selected season", 
-                 x = " Number of match", y = "League Position")
+                 x = " Number of match", y = "League Position") +
+            transition_reveal(num_match)
     })
 }
 
