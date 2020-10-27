@@ -3,6 +3,7 @@ library(tidyverse)
 library(gganimate)
 library(ggplot2)
 library(plotly)
+library(shinythemes)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
@@ -20,6 +21,7 @@ ui <- navbarPage(
     "Economic Consequences of league position in the Premier league",
     tabPanel("The Premier League",
              fluidPage(
+                 theme = shinytheme("flatly"),
                  includeMarkdown("doc/pl.md"),
                  mainPanel(
                      plotlyOutput("season"))),

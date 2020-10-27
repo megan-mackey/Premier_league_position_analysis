@@ -1,6 +1,7 @@
 <center><img src="Premier-League-Logo.png" alt="logo" width="300"></center>
 
 <center><h2>A Dive into Premier League Football</h2></center>
+<br>
 
 This web app is my first attempt at developing data-driven sports stories with R.
 

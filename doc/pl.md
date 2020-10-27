@@ -16,9 +16,12 @@ It’s all about one thing: Europe AKA the Champions league.
 <br>
 Each league in English soccer — all of which are connected by a system of promotion and relegation — has only one table. At the bottom of the league lies relegation, for the worst three clubs, to the lower league for the whole next season. In the leagues below the Premier League, finishing in the top three means being promoted up a league for the whole next season. And, obviously, whoever finishes first is the champion in all leagues.
 
+<br>
 
 <center><img src="relegation_3230802b.jpg" alt="logo" width="400"></center>
 
+
+<br>
 
 Below shows you the premier league positions for teams from the 2009-2010 season, all the way to the 2014-2015 season. We will compare this data with the money recieved from the Premier league but for now, have a look and see if you are surprised by any teams. The graph is interactive so feel free to play around with it !
 
