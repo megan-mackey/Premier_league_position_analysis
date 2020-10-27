@@ -6,7 +6,7 @@ This web app is my first attempt at developing data-driven sports stories with R
 
 <center><h3>The Model</h3></center>
 
-The aim of this model is to look into the economic consequences of your league position in the English premier league. It is a aim of all teams to either move up to this league or stay in the league all together. The money received from the premier league organization is substantial compared to many leaves in the world. My project will take you on a journey across multiple season in the premier league, to see how this money affects the probability of staying in this league and fighting for the title. The journey will start with the 2005-2006 season and go all the way to the 2014-2015 season. This gives us a great pool of data to draw some conclusions from. 
+The aim of this model is to look into the economic consequences of your league position in the English premier league. It is a aim of all teams to either move up to this league or stay in the league all together. The money received from the premier league organization is substantial compared to many leaves in the world. My project will take you on a journey across multiple season in the premier league, to see how this money affects the probability of staying in this league and fighting for the title. The journey will start with the 2009-2010 season and go all the way to the 2014-2015 season. This gives us a great pool of data to draw some conclusions from. 
 
 <br>
 
@@ -31,6 +31,9 @@ Data presentation- I have elected to not sure all the data in the data set I hav
 
 
 Time Constraints – Time available to study this model is constrained to a deadline, this may mean I might not have time to analyze everything
+
+
+Data Availability - I would have liked to look at more seasons especially pre 2009-2010 because this is the time when finance in the game really sky rocketed but due to availability this is not possible and also the data is relevant to my question, all the assumptions will not be 100 % accurate.
 
 <br>
 <br>
