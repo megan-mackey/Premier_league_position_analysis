@@ -40,7 +40,8 @@ ui <- navbarPage(
                  includeMarkdown("doc/model.md"),
                  includeMarkdown("doc/general_considerations.md"),
                  mainPanel(tabsetPanel(type = "tabs",
-                                       tabPanel("Plot", plotlyOutput("Money")),
+                                       tabPanel("Plot # 1: Team", plotlyOutput("Money")),
+                                       tabPanel("Plot # 2: Over time", plotlyOutput("Money_time")),
                                        tabPanel("Key Takeaway",
                                                 p(textOutput("Money_text")))))),
              selectInput("Money", "Select a Team:",
@@ -103,43 +104,63 @@ server <- function(input, output) {
         
     })
     
-    output$Money <- renderPlotly({
+output$Money <- renderPlotly({
+  
+    plot_2 <- case_when(
+        input$Money == "Arsenal" ~ list(arsenal),
+        input$Money == "Aston Villa" ~ list(aston_villa),
+        input$Money == "Birmingham" ~ list(birmingham),
+        input$Money == "Blackburn" ~ list(blackburn),
+        input$Money == "Blackpool" ~ list(blackpool),
+        input$Money == "Bolton" ~ list(bolton),
+        input$Money == "Burnley" ~ list(burnley),
+        input$Money == "Cardiff" ~ list(cardiff),
+        input$Money == "Chelsea" ~ list(chelsea),
+        input$Money == "Crystal Palace" ~ list(crystal_palace),
+        input$Money == "Everton" ~ list(everton),
+        input$Money == "Fulham" ~ list(fulham), 
+        input$Money == "Hull" ~ list(hull),
+        input$Money == "Leicester" ~ list(leicester),
+        input$Money == "Liverpool" ~ list(liverpool),
+        input$Money == "Man City" ~ list(man_city),
+        input$Money == "Man United" ~ list(man_united),
+        input$Money == "Newcastle" ~ list(newcastle),
+        input$Money == "Norwich" ~ list(norwich),
+        input$Money == "Portsmouth" ~ list(portsmouth),
+        input$Money == "QPR" ~ list(qpr),
+        input$Money == "Reading" ~ list(reading),
+        input$Money == "Southampton" ~ list(southampton),
+        input$Money == "Stoke" ~ list(stoke),
+        input$Money == "Sunderland" ~ list(sunderland),
+        input$Money == "Swansea" ~ list(swansea),
+        input$Money == "Tottenham" ~ list(tottenham),
+        input$Money == "West Brom" ~ list(west_brom),
+        input$Money == "West Ham" ~ list(west_ham),
+        input$Money == "Wigan" ~ list(wigan),
+        input$Money == "Wolves" ~ list(wolves),
+        TRUE ~ list(arsenal)) %>%
+        .[[1]]
+})  
+    
+    output$Money_time <- renderPlotly({
         
-        plot_2 <- case_when(
-            input$Money == "Arsenal" ~ list(arsenal),
-            input$Money == "Aston Villa" ~ list(aston_villa),
-            input$Money == "Birmingham" ~ list(birmingham),
-            input$Money == "Blackburn" ~ list(blackburn),
-            input$Money == "Blackpool" ~ list(blackpool),
-            input$Money == "Bolton" ~ list(bolton),
-            input$Money == "Burnley" ~ list(burnley),
-            input$Money == "Cardiff" ~ list(cardiff),
-            input$Money == "Chelsea" ~ list(chelsea),
-            input$Money == "Crystal Palace" ~ list(crystal_palace),
-            input$Money == "Everton" ~ list(everton),
-            input$Money == "Fulham" ~ list(fulham), 
-            input$Money == "Hull" ~ list(hull),
-            input$Money == "Leicester" ~ list(leicester),
-            input$Money == "Liverpool" ~ list(liverpool),
-            input$Money == "Man City" ~ list(man_city),
-            input$Money == "Man United" ~ list(man_united),
-            input$Money == "Newcastle" ~ list(newcastle),
-            input$Money == "Norwich" ~ list(norwich),
-            input$Money == "Portsmouth" ~ list(portsmouth),
-            input$Money == "QPR" ~ list(qpr),
-            input$Money == "Reading" ~ list(reading),
-            input$Money == "Southampton" ~ list(southampton),
-            input$Money == "Stoke" ~ list(stoke),
-            input$Money == "Sunderland" ~ list(sunderland),
-            input$Money == "Swansea" ~ list(swansea),
-            input$Money == "Tottenham" ~ list(tottenham),
-            input$Money == "West Brom" ~ list(west_brom),
-            input$Money == "West Ham" ~ list(west_ham),
-            input$Money == "Wigan" ~ list(wigan),
-            input$Money == "Wolves" ~ list(wolves),
-            TRUE ~ list(arsenal)) %>%
-            .[[1]]
+        finance_final %>%
+            ggplot(aes(position, `Total Payment`)) +
+            geom_point() +
+            facet_wrap(~ team, scales = "free_x") +
+            labs(x = "Position",
+                 y = "Total Payment") +
+            theme_classic() +
+            theme(axis.title = element_text(face = "bold")) +
+            geom_smooth(method = "lm", se = FALSE)
     })
+    
+output$Money_text <- renderText({
+    
+includeMarkdown("doc/general_conclusions.md")   
+    
+})   
+    
 }
 # Run the application 
 shinyApp(ui = ui, server = server)
