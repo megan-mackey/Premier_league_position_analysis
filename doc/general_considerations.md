@@ -14,6 +14,4 @@
 
 5. Feel free to use the average trends in all three categories whilst looking at teams to see what an average team might receive in that season
 
-To see the general conclusions, look below the graph but for team specific conclusions look in the key takeaways tab !!!!
-
 <br>

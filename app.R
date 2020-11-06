@@ -23,6 +23,7 @@ ui <- navbarPage(
              fluidPage(
                  theme = shinytheme("flatly"),
                  includeMarkdown("doc/pl.md"),
+                 includeMarkdown("doc/general_considerations_html.md"),
                  mainPanel(
                      plotlyOutput("season"))),
              selectInput("season", "Select a Season:",
@@ -38,10 +39,9 @@ ui <- navbarPage(
     tabPanel("Financial Consequences",
              fluidPage(
                  includeMarkdown("doc/model.md"),
-                 includeMarkdown("doc/general_considerations.md"),
                  mainPanel(tabsetPanel(type = "tabs",
                                        tabPanel("Plot # 1: Team", plotlyOutput("Money")),
-                                       tabPanel("Plot # 2: Over time", plotlyOutput("Money_time")),
+                                       tabPanel("Plot # 2: Duration of Model", plotlyOutput("Money_time")),
                                        tabPanel("Key Takeaway",
                                                 p(textOutput("Money_text")))))),
              selectInput("Money", "Select a Team:",
@@ -76,7 +76,8 @@ ui <- navbarPage(
                            "Cardiff",
                            "Crystal Palace",
                            "Leicester"),
-                         multiple = FALSE)),
+                         multiple = FALSE),
+             includeMarkdown("doc/general_conclusions.md")),
     tabPanel("Significance of Project",
              includeMarkdown("doc/intro.md"),
              includeMarkdown("doc/source_part1.md")),
@@ -151,42 +152,18 @@ output$Money <- renderPlotly({
                  y = "Total Payment") +
             theme_classic() +
             theme(axis.title = element_text(face = "bold")) +
-            geom_smooth(method = "lm", se = FALSE)
+            geom_smooth(method = "lm", se = FALSE, formula = y ~x)
     })
-    
-output$Money_text <- renderText({
-"These are a few of the major themes which have come from comparing the model above, these are not limited but included:
-
-
-1. Staying in the Premier League is so important. Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time. Teams who only stay in the league for one season such as Portsmouth, are heavily reliant on the money received from the last season in the Championship, they do not have the economic power to cause much change in league position such as buy the best players out there.
-
-
-
-
-2. Teams lower down in the table rely more on equal share payments as they receive less merit payments and facility fees. 
-
-
-
-
-3. Teams who stay in the Premier league for longer have increased facility fees over time. This is attributed to increased global exposure, more people are wanting to watch them play and hence more games are broadcasted. This is extra income for those teams.
-
-
-
-
-4. As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.
-
-
-
-
-5. Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. 
-
-
-
-
-6. There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated "
-    
-})   
-    
+  
+    output$Money_text <- renderText({
+"These are a few of the major themes which have come from comparing the model above, these are not limited but included:\n
+1. Staying in the Premier League is so important. Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time. Teams who only stay in the league for one season such as Portsmouth, are heavily reliant on the money received from the last season in the Championship, they do not have the economic power to cause much change in league position such as buy the best players out there.\n
+2. Teams lower down in the table rely more on equal share payments as they receive less merit payments and facility fees. \n
+3. Teams who stay in the Premier league for longer have increased facility fees over time. This is attributed to increased global exposure, more people are wanting to watch them play and hence more games are broadcasted. This is extra income for those teams.\n
+4. As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.\n
+5. Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. \n
+6. There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
+    })     
 }
 # Run the application 
 shinyApp(ui = ui, server = server)
