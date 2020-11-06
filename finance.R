@@ -29,7 +29,7 @@ aston_villa <- finance_final %>%
 
 # Birmingham
 birmingham <- finance_final %>%
-    filter(team == "Man United") %>%
+    filter(team == "Birmingham") %>%
     ggplot(aes(x = season, y = Finances, fill = type))+
     geom_col(position = "stack")+
     geom_point(aes(x = season, y = position)) +

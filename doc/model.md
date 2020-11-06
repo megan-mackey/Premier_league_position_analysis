@@ -23,13 +23,4 @@ Before you view the model below, there are a few things which you should take in
 <center><img src="trophy.JPG" alt="logo" width="300"></center>
 
 <br>
-<br>
 
-The aim of my model is to find out the economic consequences of your league position so it may look like we should only look at Merit payments by the definition I just gave but Facility fees and Equal Share payments are relevant too. The longer you stay in the premier league, the more popular the club will become and the more games which will be broadcasted. The longer you stay in the premier league is dependent on your position. In regards to, equal share payments it can be used as a baseline to compare the other two categories.
-
-<br>
-<br>
-
-Don't forget the graph is interactive !
-
-<br>

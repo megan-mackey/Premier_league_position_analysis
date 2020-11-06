@@ -1,0 +1,77 @@
+---
+title: "Untitled"
+author: "Megan Mackey"
+date: "10/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(gganimate)
+
+
+load("Data/processed_data.rda")
+```
+
+```{r}
+test <- df_all %>%
+ filter(season == "2006-2007") %>%
+   
+   ggplot(aes(x = num_match , y =  position, color = team)) +
+   geom_line()+
+   labs(title = "Change in position over the 2006-2007 season", 
+        x = " Number of match", y = "League Position") +
+   transition_reveal(date)
+```
+
+```{r}
+west_brom <-  finance_final %>%
+    filter(team == "West Brom") %>%
+    ggplot(aes(x = season, y = Finances, fill = ))+
+    geom_col(position = "stack")+
+    geom_line(data = df_all,aes(x = season, y = position)) +
+    labs(title = "Amount of Money received by West Brom",
+         x = "Season",
+         y = "Money Received ( Millions of Pounds)") +
+scale_fill_discrete(name = "Type")
+```
+
+```{r}
+bolton <- finance_final %>%
+    filter(team == "Bolton") %>%
+    ggplot(aes(x = season, y = Finances, fill = type))+
+    geom_col(position = "stack")+
+    geom_point(aes(x = season, y = position))+
+    labs(title = "Amount of Money received by Bolton",
+         x = "Season",
+         y = "Money Received ( Millions of Pounds)") +
+    scale_fill_discrete(name = "Type")
+```
+
+```{r}
+stoke <-  finance_final %>%
+    filter(team == "Stoke") %>%
+    ggplot(aes(x = season, y = Finances, fill = type))+
+    geom_col(position = "stack")+
+    geom_point(aes(x = season, y = position)) +
+    labs(title = "Amount of Money received by Stoke",
+         x = "Season",
+         y = "Money Received ( Millions of Pounds)") +
+    scale_fill_discrete(name = "Type")
+```
+
+```{r}
+
+finance_final %>%
+  ggplot(aes(position, `Total Payment`)) +
+  geom_point() +
+  facet_wrap(~ team, scales = "free_x") +
+  labs(x = "Position",
+       y = "Total Payment") +
+  theme_classic() +
+  theme(axis.title = element_text(face = "bold")) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
