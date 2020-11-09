@@ -4,15 +4,19 @@ library(gganimate)
 library(ggplot2)
 library(plotly)
 library(shinythemes)
+library(broom.mixed)
+library(rstanarm)
+library(gt)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
 
 # load text for about page
 
-source("creator_information.R")
-source("league_positions.R")
-source("finance.R")
+source("Shiny_app/creator_information.R")
+source("Shiny_app/league_positions.R")
+source("Shiny_app/finance.R")
+
 
 
 
@@ -23,7 +27,6 @@ ui <- navbarPage(
              fluidPage(
                  theme = shinytheme("flatly"),
                  includeMarkdown("doc/pl.md"),
-                 includeMarkdown("doc/general_considerations_html.md"),
                  mainPanel(
                      plotlyOutput("season"))),
              selectInput("season", "Select a Season:",
@@ -78,6 +81,18 @@ ui <- navbarPage(
                            "Leicester"),
                          multiple = FALSE),
              includeMarkdown("doc/general_conclusions.md")),
+    tabPanel("Bayesian Model",
+             fluidPage(mainPanel(
+               tabPanel("Correlation Table",
+                                fluidRow(
+                                  column(6,
+                                         gt_output("position_cor")
+                                  ),
+                                class = 'leftAlign'))),
+             tabPanel("Modelling Position with Performance",
+                      plotlyOutput("model")),
+             tabPanel("Key Takeaways",
+                      p(textOutput("Model_text"))))),
     tabPanel("Significance of Project",
              includeMarkdown("doc/intro.md"),
              includeMarkdown("doc/source_part1.md")),
@@ -163,7 +178,29 @@ output$Money <- renderPlotly({
 4. As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.\n
 5. Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. \n
 6. There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
-    })     
+    })  
+    
+output$position_cor <- render_gt({   
+ 
+})
+
+output$Model <- renderPlotly({
+  finance_model %>% 
+    as_tibble() %>% 
+    ggplot(aes(position)) + 
+    geom_histogram(aes(y = after_stat(count/sum(count))),
+                   bins = 100) +
+    labs(title = "Posterior Distribution of the Coefficient of `position`",
+         y = "Probability",
+         x = "Coefficient of `position`") + 
+    scale_y_continuous(labels = scales::percent_format()) +
+    theme_classic()  
+
+
+})
+
+    
+    
 }
 # Run the application 
 shinyApp(ui = ui, server = server)
