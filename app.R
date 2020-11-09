@@ -7,15 +7,18 @@ library(shinythemes)
 library(broom.mixed)
 library(rstanarm)
 library(gt)
+library(tidymodels)
+library(ranger)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
 
-# load text for about page
+# load text for pages
 
-source("Shiny_app/creator_information.R")
-source("Shiny_app/league_positions.R")
-source("Shiny_app/finance.R")
+source("creator_information.R")
+source("league_positions.R")
+source("finance.R")
+source("bayesian_model.R")
 
 
 
@@ -82,17 +85,13 @@ ui <- navbarPage(
                          multiple = FALSE),
              includeMarkdown("doc/general_conclusions.md")),
     tabPanel("Bayesian Model",
-             fluidPage(mainPanel(
-               tabPanel("Correlation Table",
-                                fluidRow(
-                                  column(6,
-                                         gt_output("position_cor")
-                                  ),
-                                class = 'leftAlign'))),
-             tabPanel("Modelling Position with Performance",
-                      plotlyOutput("model")),
-             tabPanel("Key Takeaways",
-                      p(textOutput("Model_text"))))),
+             fluidPage(mainPanel(tabsetPanel(type = "tabs",
+                                            tabPanel("Correlation Table", gt_output("cor_table")),
+                                            tabPanel("Plot", plotlyOutput("model")),
+                                            tabPanel("Zoom in 1", plotlyOutput("model_1")),
+                                            tabPanel("Zoom in 2", plotlyOutput("modek_2")),
+                                            tabPanel("Key Takeaway",
+                                                     p(textOutput("Model_text"))))))),
     tabPanel("Significance of Project",
              includeMarkdown("doc/intro.md"),
              includeMarkdown("doc/source_part1.md")),
@@ -180,21 +179,35 @@ output$Money <- renderPlotly({
 6. There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
     })  
     
-output$position_cor <- render_gt({   
- 
+output$cor_table <- render_gt({   
+cor_table
+  
+  
+  
 })
 
-output$Model <- renderPlotly({
-  finance_model %>% 
-    as_tibble() %>% 
-    ggplot(aes(position)) + 
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior Distribution of the Coefficient of `position`",
-         y = "Probability",
-         x = "Coefficient of `position`") + 
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()  
+output$model <- renderPlotly({
+  set.seed(10)
+  
+  finance_split <- initial_split(finance_final, prob = 0.80)
+  
+  finance_train <- training(finance_split)
+  finance_test  <-  testing(finance_split)
+  
+  
+  finance_rec <- 
+    recipe(`Total Payment` ~ position + team,
+           data = finance_train) %>%
+    step_dummy(all_nominal())
+  
+  model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) + 
+    geom_point(alpha = .2) + 
+    geom_smooth(method = lm, formula = y ~ x, se = FALSE, col = "red") + 
+    scale_x_log10() + 
+    scale_y_log10() + 
+    labs(x = "Position in league", y = "Total Payment in millions (GBP)") +
+    scale_x_continuous(breaks = c(1,5,10,15,20)) +
+    labs(title = " Relationship between position and total payment")
 
 
 })
