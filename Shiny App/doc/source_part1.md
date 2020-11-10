@@ -23,3 +23,10 @@ Below you will find download links to all available CSV data files to use.
 **Note**: see the original web page [here](http://www.football-data.co.uk/englandm.php).
 
 <br>
+<center><h2>Acknowledgements</h2></center>
+
+Thanks goes out to the Premier League, who compiled and made the financial data available for this project, this data set the base for the data which I ended up creating. My work with the Premier League Seasons data wouldn't have been possible without the files listed above, from which I scraped the seasons data sets. Finally, I'm indebted to Tyler Simko and all the TF's in Government 50. They have assisted me in completing this project and without their expertise, this would not have been possible.
+
+
+
+<br>

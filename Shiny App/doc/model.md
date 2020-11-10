@@ -1,6 +1,4 @@
-<center><h2> The Model </h2></center>
 
-<br>
 
 <center><img src="Gary-Neville.jpg" alt="logo" width="300"></center>
 

@@ -30,6 +30,7 @@ ui <- navbarPage(
              fluidPage(
                  theme = shinytheme("flatly"),
                  includeMarkdown("doc/pl.md"),
+                 includeMarkdown("doc/general_considerations.md"),
                  mainPanel(
                      plotlyOutput("season"))),
              selectInput("season", "Select a Season:",
@@ -88,8 +89,7 @@ ui <- navbarPage(
              fluidPage(mainPanel(tabsetPanel(type = "tabs",
                                             tabPanel("Correlation Table", gt_output("cor_table")),
                                             tabPanel("Plot", plotlyOutput("model")),
-                                            tabPanel("Zoom in 1", plotlyOutput("model_1")),
-                                            tabPanel("Zoom in 2", plotlyOutput("modek_2")),
+                                            tabPanel("Comparison", plotlyOutput("model_1")),
                                             tabPanel("Key Takeaway",
                                                      p(textOutput("Model_text"))))))),
     tabPanel("Significance of Project",
@@ -99,7 +99,11 @@ ui <- navbarPage(
              h3("Project"),
              p(p1),
              h3("Project Information"),
-             p(p2)))
+             p("If you're interested in learning more about the project or about myself, don't hesistate
+                                 to reach out through email at mmackey@college.harvard.edu, or visit my", a("GitHub Account", href="https://github.com/megan-mackey/Premier_league_position_analysis"), " page.
+                                 Thank you for visiting!")))
+
+
 
 
 # Define server logic required to draw a histogram
@@ -209,6 +213,35 @@ output$model <- renderPlotly({
     scale_x_continuous(breaks = c(1,5,10,15,20)) +
     labs(title = " Relationship between position and total payment")
 
+
+})
+
+output$model_1 <- renderPlotly({
+  comp_model <- stan_glm(data = finance_final, 
+                         formula = `Total Payment` ~ position + team,
+                         refresh = 0)
+  
+  comp_model %>%
+    as_tibble() %>%
+    mutate(manu_payment = `(Intercept)` + `teamMan United`) %>%
+    mutate(tottenham_payment = `(Intercept)` + teamTottenham) %>%
+    select(manu_payment, tottenham_payment) %>% 
+    pivot_longer(cols = manu_payment:tottenham_payment, 
+                 names_to = "Team",
+                 values_to = "payment") %>% 
+    ggplot(aes(payment, fill = Team)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),
+                   alpha = 0.5, 
+                   bins = 100, 
+                   position = "identity") +
+    labs(title = "Posterior Probability Distribution",
+         subtitle = "Comparing Tottenham and Man United",
+         x = "Average  Payment received",
+         y = "Probability") + 
+    scale_x_continuous(labels = scales::number_format()) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    theme_classic() +
+    scale_fill_discrete(labels = c("Man United", "Tottenham"))
 
 })
 

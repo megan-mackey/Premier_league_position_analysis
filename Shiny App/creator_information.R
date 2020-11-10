@@ -6,9 +6,7 @@ come with that. This model is predictive as I am predicting what will happen, th
 likely a team will be relegated and vice versa when they finish in a higher position in the league. The model will use a point graph on a stacked barplot
 to see if we can establish a link."
 
+p8 <- "My name is Megan Mackey and I'm a member of Harvard's class of 2023 with a BA in Government. You can reach me at 
+megan.mackey01@gmail.com and find my repository at "
 
-
-
-p2  <- 'You can reach me at mmackey@college.harvard.edu. Here is the link to
-               my repo:
-               https://github.com/megan-mackey/Final_project'
+p8_link <- "https://github.com/megan-mackey/Premier_league_position_analysis"
