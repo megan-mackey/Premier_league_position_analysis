@@ -77,8 +77,11 @@ ui <- navbarPage(
     tabPanel("Bayesian Model",
              fluidPage(mainPanel(tabsetPanel(type = "tabs",
                                             tabPanel("Correlation Table", gt_output("cor_table")),
-                                            tabPanel("Plot", plotlyOutput("model")),
-                                            tabPanel("Comparison", plotlyOutput("model_1")),
+                                            tabPanel("Plot",
+                                                          plotlyOutput("model")),
+                                            tabPanel("Comparison", 
+                                                     p("Comparing two teams who withstood relegation and stayed in the model for the 6 seasons. This will make it easier to compare as they have equivalent data points. On average Man United finished in 3rd place and Tottenham 5th."),
+                                                     plotlyOutput("model_1")),
                                             tabPanel("Key Takeaway",
                                                      p(textOutput("Model_text"))))))),
     tabPanel("Significance of Project",
@@ -103,7 +106,7 @@ server <- function(input, output) {
   src = './Gifs/edit_gif.gif',
   contentType = 'image/gif',
   width = 700,
-  height = 490
+  height = 500
 )
 
       
@@ -215,7 +218,15 @@ output$model_1 <- renderPlotly({
 
 })
 
-    
+output$Model_text <- renderText ({
+" The relationship between total payment and position show a negative correlation. In other words, the lower the position the less money you will recieve. Also,
+  the difference between two positions is significant (comparison tab). The median value for Tottenham is £51 million pounds and for Man Utd £55 million pounds.
+  On average they are only two positions different but in regard to total payment the difference is £4 million significant. Shows why teams are so keen to finish even 1 position 
+  higher than the previous season. " 
+  
+  
+  
+})    
     
 }
 # Run the application 

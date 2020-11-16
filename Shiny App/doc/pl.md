@@ -9,9 +9,12 @@ After all, in most sports finishing fourth isn’t considered any sort of succes
 So what’s the deal with the top four?
 
 It’s all about one thing: Europe AKA the Champions league.
+<br>
 
 <br>
+<br>
 <center><img src="640px-Logo_uefa_2012.png" alt="logo" width="300"></center>
+<br>
 
 <br>
 Each league in English soccer — all of which are connected by a system of promotion and relegation — has only one table. 
