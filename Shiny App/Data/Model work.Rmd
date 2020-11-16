@@ -100,3 +100,10 @@ scale_fill_discrete(labels = c("Man United", "Tottenham"))
 
 ```
 
+```{r}
+highest_transfer %>%
+rename(`Transfer Record (Millions of Pounds)` = highest_fee,
+       Team = team) %>%
+gt()
+```
+

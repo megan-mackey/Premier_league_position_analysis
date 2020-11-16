@@ -21,6 +21,7 @@ source("league_positions.R")
 source("finance.R")
 source("bayesian_model.R")
 source("teams.r")
+source("transfer.R")
 
 
 
@@ -84,6 +85,14 @@ ui <- navbarPage(
                                                      plotlyOutput("model_1")),
                                             tabPanel("Key Takeaway",
                                                      p(textOutput("Model_text"))))))),
+    tabPanel("Consequence: Transfers",
+             fluidPage(mainPanel(tabsetPanel(type = "tabs",
+                                             tabPanel("Record Transfer Fees per team",
+                                                      gt_output("transfer_table")),
+                                             tabPanel("Plot",
+                                                      plotlyOutput("transfers")),
+                                             tabPanel("Key Takeaway",
+                                                      p(textOutput("model_transfer"))))))),
     tabPanel("Significance of Project",
              includeMarkdown("doc/intro.md"),
              includeMarkdown("doc/source_part1.md")),
@@ -226,7 +235,25 @@ output$Model_text <- renderText ({
   
   
   
-})    
+})  
+
+output$transfer_table <- render_gt({
+summary_table  
+  
+})
+
+output$transfers <-renderPlotly({
+predict_graph
+  
+})
+
+output$model_transfer <- renderText({
+"Where you finish in the league determines the amount of money you receive, from the model here we can see
+that there is a correlation between position and record transfer fee. The lower the position, the lower the record
+  transfer fee. A team's record transfer fee can be seen as a consequence of the total payment they recieve." 
+  
+  
+})
     
 }
 # Run the application 
