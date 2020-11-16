@@ -9,6 +9,7 @@ library(rstanarm)
 library(gt)
 library(tidymodels)
 library(ranger)
+library(shinycustomloader)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
@@ -19,7 +20,7 @@ source("creator_information.R")
 source("league_positions.R")
 source("finance.R")
 source("bayesian_model.R")
-
+source("teams.r")
 
 
 
@@ -28,28 +29,16 @@ ui <- navbarPage(
     "Economic Analysis of league positon from 2009-2015",
     tabPanel("The Premier League",
              fluidPage(
-                 theme = shinytheme("flatly"),
-                 includeMarkdown("doc/pl.md"),
-                 includeMarkdown("doc/general_considerations.md"),
                  mainPanel(
-                     plotlyOutput("season"))),
-             selectInput("season", "Select a Season:",
-                         choices = c(
-                             "2009-2010",
-                             "2010-2011",
-                             "2011-2012",
-                             "2012-2013",
-                             "2013-2014",
-                             "2014-2015"),
-                         selected = c("2009-2010"),
-                         multiple = FALSE)),
+                 imageOutput("season"),type="html", loader="loader2"),
+                 includeMarkdown("doc/pl.md"),
+                 includeMarkdown("doc/general_considerations.md"))),
     tabPanel("Financial Consequences",
              fluidPage(
-                 includeMarkdown("doc/model.md"),
                  mainPanel(tabsetPanel(type = "tabs",
                                        tabPanel("Plot # 1: Team", plotlyOutput("Money")),
                                        tabPanel("Plot # 2: Duration of Model", plotlyOutput("Money_time")),
-                                       tabPanel("Key Takeaway",
+                                       tabPanel("Key Takeaways",
                                                 p(textOutput("Money_text")))))),
              selectInput("Money", "Select a Team:",
                          c("Arsenal",
@@ -84,7 +73,7 @@ ui <- navbarPage(
                            "Crystal Palace",
                            "Leicester"),
                          multiple = FALSE),
-             includeMarkdown("doc/general_conclusions.md")),
+             includeMarkdown("doc/model.md")),
     tabPanel("Bayesian Model",
              fluidPage(mainPanel(tabsetPanel(type = "tabs",
                                             tabPanel("Correlation Table", gt_output("cor_table")),
@@ -96,8 +85,8 @@ ui <- navbarPage(
              includeMarkdown("doc/intro.md"),
              includeMarkdown("doc/source_part1.md")),
     tabPanel("Creator Information", 
-             h3("Project"),
-             p(p1),
+            h3("Project"),
+           p(p1),
              h3("Project Information"),
              p("If you're interested in learning more about the project or about myself, don't hesistate
                                  to reach out through email at mmackey@college.harvard.edu, or visit my", a("GitHub Account", href="https://github.com/megan-mackey/Premier_league_position_analysis"), " page.
@@ -108,19 +97,18 @@ ui <- navbarPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-    output$season <- renderPlotly ({
-        
-        plot1 <- case_when(
-            input$season == "2009-2010" ~ list(season_2009_2010),
-            input$season == "2010-2011" ~ list(season_2010_2011),
-            input$season == "2011-2012" ~ list(season_2011_2012),
-            input$season == "2012-2013" ~ list(season_2012_2013),
-            input$season == "2013-2014" ~ list(season_2013_2014),
-            input$season == "2014-2015" ~ list(season_2014_2015),
-            TRUE ~ list(season_2009_2010)) %>%
-            .[[1]]
-        
-    })
+    output$season <- renderImage ({
+
+   list(
+  src = './Gifs/edit_gif.gif',
+  contentType = 'image/gif',
+  width = 700,
+  height = 490
+)
+
+      
+    }, deleteFile = F)
+  
     
 output$Money <- renderPlotly({
   
@@ -174,13 +162,13 @@ output$Money <- renderPlotly({
     })
   
     output$Money_text <- renderText({
-"These are a few of the major themes which have come from comparing the model above, these are not limited but included:\n
-1. Staying in the Premier League is so important. Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time. Teams who only stay in the league for one season such as Portsmouth, are heavily reliant on the money received from the last season in the Championship, they do not have the economic power to cause much change in league position such as buy the best players out there.\n
-2. Teams lower down in the table rely more on equal share payments as they receive less merit payments and facility fees. \n
-3. Teams who stay in the Premier league for longer have increased facility fees over time. This is attributed to increased global exposure, more people are wanting to watch them play and hence more games are broadcasted. This is extra income for those teams.\n
-4. As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.\n
-5. Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. \n
-6. There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
+
+" Staying in the Premier League is so important. Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time. Teams who only stay in the league for one season such as Portsmouth, are heavily reliant on the money received from the last season in the Championship, it do not have the economic power to cause much change in league position such as buy the best players out there.
+Teams lower down in the table rely more on equal share payments as they receive less merit payments and facility fees.
+Teams who stay in the Premier league for longer have increased facility fees over time. This is attributed to increased global exposure, more people are wanting to watch them play and hence more games are broadcasted. This is extra income for those teams.
+As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.
+Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. 
+There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
     })  
     
 output$cor_table <- render_gt({   
@@ -197,12 +185,17 @@ output$model <- renderPlotly({
   
   finance_train <- training(finance_split)
   finance_test  <-  testing(finance_split)
+  finance_folds <- vfold_cv(finance_final, folds = 7)
+  
+  finance_rec <- workflow() %>%
+    add_model(linear_reg() %>% 
+                set_engine("lm") %>% 
+                set_mode("regression")) %>%
+    add_recipe(recipe(`Total Payment` ~ position + team,
+                      data = finance_train) %>%
+                 step_dummy(all_nominal()))
   
   
-  finance_rec <- 
-    recipe(`Total Payment` ~ position + team,
-           data = finance_train) %>%
-    step_dummy(all_nominal())
   
   model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) + 
     geom_point(alpha = .2) + 

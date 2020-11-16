@@ -1,0 +1,47 @@
+---
+title: "Gather Information Finance"
+author: "Megan Mackey"
+date: "10/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+```
+
+```{r read in all excel sheets}
+finance_2009_2010 <- read_excel("season-2009-2010.xlsx") %>%
+finance_2010_2011 <- read_excel("season-2010-11.xlsx") %>%
+finance_2011_2012 <- read_excel("season-2011-12.xlsx") %>%
+finance_2012_2013 <- read_excel("season-2012-2013.xlsx") %>%
+finance_2013_2014 <- read_excel("season-2013-2014.xlsx") %>%
+finance_2014_2015 <- read_excel("season-2014-2015.xlsx")
+
+finance_join <- rbind(finance_2009_2010, finance_2010_2011, finance_2011_2012, finance_2012_2013, finance_2013_2014, finance_2014_2015)
+
+```
+
+```{r join with df_all}
+finance_joined <- inner_join(finance_join, df_all, by = c('team','season')) 
+
+finance_selected <- finance_joined %>%
+filter(num_match == 38) %>%
+select(season, num_match, team, `Total Payment`, position, `Equal Share Payments`, `Facility Fees`, `Merit Payment`)
+
+finance_final <- finance_selected %>%
+pivot_longer(names_to = "type", 
+               values_to = "Finances", 
+               cols = c(`Equal Share Payments`,`Facility Fees`,`Merit Payment`))
+
+
+
+```
+
+
+```{r save}
+save(finance_final, file = "Data/processed_data_finance.rda")
+```
+

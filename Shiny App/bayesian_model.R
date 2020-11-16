@@ -9,7 +9,7 @@ finance_split <- initial_split(finance_final, prob = 0.80)
 
 finance_train <- training(finance_split)
 finance_test  <-  testing(finance_split)
-
+finance_folds <- vfold_cv(finance_final, folds = 5)
 
 finance_rec <- 
   recipe(`Total Payment` ~ position + team,

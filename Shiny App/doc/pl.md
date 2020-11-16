@@ -14,7 +14,9 @@ It’s all about one thing: Europe AKA the Champions league.
 <center><img src="640px-Logo_uefa_2012.png" alt="logo" width="300"></center>
 
 <br>
-Each league in English soccer — all of which are connected by a system of promotion and relegation — has only one table. At the bottom of the league lies relegation, for the worst three clubs, to the lower league for the whole next season. In the leagues below the Premier League, finishing in the top three means being promoted up a league for the whole next season. And, obviously, whoever finishes first is the champion in all leagues.
+Each league in English soccer — all of which are connected by a system of promotion and relegation — has only one table. 
+At the bottom of the league lies relegation, for the worst three clubs, to the lower league for the whole next season. In the leagues below the Premier League, finishing in the top three means being promoted up a league for the whole next season.
+And, obviously, whoever finishes first is the champion in all leagues.
 
 <br>
 
