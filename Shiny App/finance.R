@@ -346,3 +346,5 @@ wolves <-  finance_final %>%
          x = "Season",
          y = "Money Received ( Millions of Pounds)")+
     scale_fill_discrete(name = "Type")
+
+

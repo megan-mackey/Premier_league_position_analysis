@@ -43,7 +43,7 @@ comp_model <- stan_glm(data = finance_final,
                        formula = `Total Payment` ~ position + team,
                        refresh = 0)
 
-comp_model %>%
+comp_graph <- comp_model %>%
   as_tibble() %>%
   mutate(manu_payment = `(Intercept)` + `teamMan United`) %>%
   mutate(tottenham_payment = `(Intercept)` + teamTottenham) %>%
