@@ -1,6 +1,5 @@
 library(shiny)
 library(tidyverse)
-library(gganimate)
 library(ggplot2)
 library(plotly)
 library(shinythemes)
@@ -10,6 +9,16 @@ library(gt)
 library(tidymodels)
 library(ranger)
 library(shinycustomloader)
+library(rmarkdown)
+library(readxl)
+library(stringr)
+library(rsample)
+library(workflows)
+library(parsnip)
+library(recipes)
+library(yardstick)
+library(tune)
+library(readr)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
@@ -17,10 +26,8 @@ library(shinycustomloader)
 # load text for pages
 
 source("creator_information.R")
-source("league_positions.R")
 source("finance.R")
 source("bayesian_model.R")
-source("teams.r")
 source("transfer.R")
 
 
@@ -238,7 +245,7 @@ output$Model_text <- renderText ({
 })  
 
 output$transfer_table <- render_gt({
-summary_table  
+highest_transfer
   
 })
 

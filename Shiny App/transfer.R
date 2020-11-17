@@ -10,7 +10,9 @@ library(recipes)
 library(yardstick)
 library(tune)
 library(gt)
+library(readxl)
 
+load("Data/processed_data_transfer.rda")
 
 set.seed(10)
 transfer_split <- initial_split(transfer_final, prob = 0.80)
@@ -42,7 +44,6 @@ coord_flip() +
           title = "Relationship between position and record transfer fee",
           subtitle = " Source : https://www.transfermarkt.co.uk")
 
-summary_table <- highest_transfer %>%
-    rename(`Transfer Record (Millions of Pounds)` = highest_fee,
-           Team = team) %>%
+highest_transfer <- read_excel("Data/transfer.xlsx") %>%
+
     gt()

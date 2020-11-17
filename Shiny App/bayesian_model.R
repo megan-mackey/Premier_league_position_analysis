@@ -1,7 +1,8 @@
 library(tidyverse)
 library(tidymodels)
 library(ranger)
-data("processed_data_finance")
+
+load("Data/processed_data_finance_edit.rda")
 
 set.seed(10)
 

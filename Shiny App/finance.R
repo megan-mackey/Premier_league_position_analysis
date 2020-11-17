@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggplot2)
 
 
-load("Data/processed_data_finance.rda")
+load("Data/processed_data_finance_edit.rda")
 
 
 # Arsenal 

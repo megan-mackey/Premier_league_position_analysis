@@ -63,4 +63,7 @@ labs( x = "Position", y = "Record Transfer Fee",
 ```
 
 
+```{r}
+save(transfer_final, file = "processed_data_transfer.rda")
+```
 
