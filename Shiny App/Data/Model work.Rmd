@@ -16,8 +16,9 @@ library(workflows)
 library(parsnip)
 library(recipes)
 library(yardstick)
+library(GPfit)
 
-data("processed_data_finance")
+data("processed_data_finance_edit.rda")
 ```
 
 ```{r}
@@ -105,5 +106,47 @@ highest_transfer %>%
 rename(`Transfer Record (Millions of Pounds)` = highest_fee,
        Team = team) %>%
 gt()
+```
+
+```{r}
+set.seed(8)
+  finance_split <- initial_split(finance_final, prob = 0.80)
+  
+  finance_train <- training(finance_split)
+  finance_test  <-  testing(finance_split)
+  finance_folds <- vfold_cv(finance_final, folds = 7)
+  
+  finance_rec <- workflow() %>%
+    add_model(linear_reg() %>% 
+                set_engine("stan") %>% 
+                set_mode("regression")) %>%
+    add_recipe(recipe(`Total Payment` ~ position + team,
+                      data = finance_train) %>%
+                 step_dummy(all_nominal()))
+   
+finance_model <- finance_rec %>%
+     fit(data = finance_train) %>%
+    predict(new_data = finance_test) %>% 
+    bind_cols(finance_test %>% select(`Total Payment`)) 
+
+
+ financial_graph <- finance_model %>%   
+ggplot(aes(x = `Total Payment`, y = .pred)) + 
+    geom_point(alpha = .2) + 
+    geom_smooth(method = lm, formula = y ~ x, se = FALSE, col = "red") + 
+    scale_x_log10() + 
+    scale_y_log10() + 
+    labs(y = "Predicted", x = "Total Payment in millions (GBP)") +
+    labs(title = " Relationship between position and total payment")
+ 
+ finance_model %>%
+   metrics(truth = `Total Payment`, estimate = .pred)
+ 
+ # The rmse values look similar to the total payment values in the finance_test
+ # data frame which mean the error is small.
+ 
+   
+ 
+
 ```
 

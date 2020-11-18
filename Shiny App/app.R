@@ -40,7 +40,7 @@ ui <- navbarPage(
                  mainPanel(
                  imageOutput("season"),type="html", loader="loader2"),
                  includeMarkdown("doc/pl.md"),
-                 includeMarkdown("doc/general_considerations.md"))),
+                 p(h3("Please see the general considerations", a("here.", href="https://docs.google.com/document/d/1zs9XcNMXfMh1g4XEWCugf-kLEbzam0eXWQnIbGknLco/edit#"))))),
     tabPanel("Financial Consequences",
              fluidPage(
                  mainPanel(tabsetPanel(type = "tabs",
@@ -82,7 +82,7 @@ ui <- navbarPage(
                            "Leicester"),
                          multiple = FALSE),
              includeMarkdown("doc/model.md")),
-    tabPanel("Bayesian Model",
+    tabPanel("Relationship between payment and position",
              fluidPage(mainPanel(tabsetPanel(type = "tabs",
                                             tabPanel("Correlation Table", gt_output("cor_table")),
                                             tabPanel("Plot",
@@ -198,8 +198,7 @@ cor_table
 })
 
 output$model <- renderPlotly({
-  set.seed(10)
-  
+  set.seed(8)
   finance_split <- initial_split(finance_final, prob = 0.80)
   
   finance_train <- training(finance_split)
@@ -208,21 +207,23 @@ output$model <- renderPlotly({
   
   finance_rec <- workflow() %>%
     add_model(linear_reg() %>% 
-                set_engine("lm") %>% 
+                set_engine("stan") %>% 
                 set_mode("regression")) %>%
     add_recipe(recipe(`Total Payment` ~ position + team,
                       data = finance_train) %>%
                  step_dummy(all_nominal()))
   
-  
-  
-  model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) + 
+  finance_rec %>%
+    fit(data = finance_train) %>%
+    predict(new_data = finance_test) %>% 
+    bind_cols(finance_test %>% select(`Total Payment`)) %>%
+    
+    ggplot(aes(x = `Total Payment`, y = .pred)) + 
     geom_point(alpha = .2) + 
     geom_smooth(method = lm, formula = y ~ x, se = FALSE, col = "red") + 
     scale_x_log10() + 
     scale_y_log10() + 
-    labs(x = "Position in league", y = "Total Payment in millions (GBP)") +
-    scale_x_continuous(breaks = c(1,5,10,15,20)) +
+    labs(y = "Predicted", x = "Total Payment in millions (GBP)") +
     labs(title = " Relationship between position and total payment")
 
 
