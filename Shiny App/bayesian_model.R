@@ -1,4 +1,4 @@
-# Load neccessary libraries
+# Load libraries
 
 library(tidyverse)
 library(tidymodels)
@@ -6,7 +6,7 @@ library(ranger)
 
 load("Data/processed_data_finance_edit.rda")
 
-# Load neccessary data
+# Load data
 
 set.seed(10)
 

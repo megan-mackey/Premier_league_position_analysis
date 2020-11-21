@@ -41,7 +41,7 @@ ui <- navbarPage(
     tabPanel("The Premier League",
              fluidPage(
                  mainPanel(
-                 imageOutput("season"),type="html", loader="loader2"),
+                 imageOutput("season"), type="html", loader="loader2"),
                  
 # The image output function allows for me to include a GIF, which is a animated
 # graph showing the league positions of teams in the model.
@@ -239,7 +239,7 @@ output$Money <- renderPlotly({
                  y = "Total Payment") +
             theme_classic() +
             theme(axis.title = element_text(face = "bold")) +
-            geom_smooth(method = "lm", se = FALSE, formula = y ~x)
+            geom_smooth(method = "lm", se = FALSE, formula = y ~ x)
     })
     
 # This provides just the total payment but using scales allows us to compare all the teams at once.

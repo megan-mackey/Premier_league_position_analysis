@@ -14,8 +14,8 @@ load("Data/processed_data_finance_edit.rda")
 # Arsenal 
 arsenal <- finance_final %>%
     filter(team == "Arsenal") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
 labs(title = "Amount of Money received by Arsenal",
      x = "Season",
@@ -25,7 +25,7 @@ labs(title = "Amount of Money received by Arsenal",
 # Aston Villa
 aston_villa <- finance_final %>%
     filter(team == "Aston Villa") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
     geom_col(position = "stack")+
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Aston Villa",
@@ -36,8 +36,8 @@ aston_villa <- finance_final %>%
 # Birmingham
 birmingham <- finance_final %>%
     filter(team == "Birmingham") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Birmingham",
          x = "Season",
@@ -48,8 +48,8 @@ birmingham <- finance_final %>%
 # Blackburn
 blackburn <-  finance_final %>%
     filter(team == "Blackburn") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Blackburn",
          x = "Season",
@@ -59,8 +59,8 @@ blackburn <-  finance_final %>%
 # Blackpool
 blackpool <-  finance_final %>%
     filter(team == "Blackpool") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Blackpool",
          x = "Season",
@@ -70,9 +70,9 @@ blackpool <-  finance_final %>%
 # Bolton
 bolton <- finance_final %>%
     filter(team == "Bolton") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
-    geom_point(aes(x = season, y = position))+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
+    geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Bolton",
          x = "Season",
          y = "Money Received ( Millions of Pounds)") +
@@ -81,8 +81,8 @@ bolton <- finance_final %>%
 # Burnley
 burnley<-  finance_final %>%
     filter(team == "Burnley") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Burnley",
          x = "Season",
@@ -92,8 +92,8 @@ burnley<-  finance_final %>%
 # Cardiff
 cardiff <-  finance_final %>%
     filter(team == "Cardiff") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Cardiff",
          x = "Season",
@@ -103,8 +103,8 @@ cardiff <-  finance_final %>%
 # Chelsea
 chelsea <-  finance_final %>%
     filter(team == "Chelsea") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Chelsea",
          x = "Season",
@@ -114,8 +114,8 @@ chelsea <-  finance_final %>%
 # Crystal Palace
 crystal_palace <-  finance_final %>%
     filter(team == "Crystal Palace") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Crystal Palace",
          x = "Season",
@@ -125,8 +125,8 @@ crystal_palace <-  finance_final %>%
 # Everton
 everton <-  finance_final %>%
     filter(team == "Everton") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Everton",
          x = "Season",
@@ -136,8 +136,8 @@ everton <-  finance_final %>%
 # Fulham 
 fulham <-  finance_final %>%
     filter(team == "Fulham") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Fulham",
          x = "Season",
@@ -147,8 +147,8 @@ fulham <-  finance_final %>%
 # Hull
 hull<-  finance_final %>%
     filter(team == "Hull") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Hull",
          x = "Season",
@@ -158,8 +158,8 @@ hull<-  finance_final %>%
 # Leicester
 leicester <-  finance_final %>%
     filter(team == "Leicester") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Leicester",
          x = "Season",
@@ -169,8 +169,8 @@ leicester <-  finance_final %>%
 #Liverpool
 liverpool <-  finance_final %>%
     filter(team == "Liverpool") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Liverpool",
          x = "Season",
@@ -180,8 +180,8 @@ liverpool <-  finance_final %>%
 #Man city
 man_city <-  finance_final %>%
     filter(team == "Man City") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Man City",
          x = "Season",
@@ -191,8 +191,8 @@ man_city <-  finance_final %>%
 # Man United
 man_united <-  finance_final %>%
     filter(team == "Man United") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Man United",
          x = "Season",
@@ -202,8 +202,8 @@ man_united <-  finance_final %>%
 # Newcastle 
 newcastle <-  finance_final %>%
     filter(team == "Newcastle") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Newcastle",
          x = "Season",
@@ -213,8 +213,8 @@ newcastle <-  finance_final %>%
 # Norwich 
 norwich <-  finance_final %>%
     filter(team == "Norwich") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Norwich",
          x = "Season",
@@ -224,8 +224,8 @@ norwich <-  finance_final %>%
 # Portsmouth
 portsmouth <-  finance_final %>%
     filter(team == "Portsmouth") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Portsmouth",
          x = "Season",
@@ -235,8 +235,8 @@ portsmouth <-  finance_final %>%
 #QPR 
 qpr <-  finance_final %>%
     filter(team == "QPR") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by QPR",
          x = "Season",
@@ -246,8 +246,8 @@ qpr <-  finance_final %>%
 # Reading
 reading <-  finance_final %>%
     filter(team == "Reading") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Reading",
          x = "Season",
@@ -257,8 +257,8 @@ reading <-  finance_final %>%
 # Southampton
 southampton <-  finance_final %>%
     filter(team == "Southampton") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Southampton",
          x = "Season",
@@ -268,8 +268,8 @@ southampton <-  finance_final %>%
 # Stoke
 stoke <-  finance_final %>%
     filter(team == "Stoke") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Stoke",
          x = "Season",
@@ -279,8 +279,8 @@ stoke <-  finance_final %>%
 # sunderland
 sunderland <-  finance_final %>%
     filter(team == "Sunderland") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Sunderland",
          x = "Season",
@@ -290,8 +290,8 @@ sunderland <-  finance_final %>%
 #Swansea
 swansea <-  finance_final %>%
     filter(team == "Swansea") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") + 
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Swansea",
          x = "Season",
@@ -301,8 +301,8 @@ swansea <-  finance_final %>%
 # Tottenham
 tottenham <-  finance_final %>%
     filter(team == "Tottenham") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Tottenham",
          x = "Season",
@@ -312,8 +312,8 @@ tottenham <-  finance_final %>%
 # West brom
 west_brom <-  finance_final %>%
     filter(team == "West Brom") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by West Brom",
          x = "Season",
@@ -323,8 +323,8 @@ west_brom <-  finance_final %>%
 # West Ham
 west_ham <-  finance_final %>%
     filter(team == "West Ham") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by West Ham",
          x = "Season",
@@ -334,8 +334,8 @@ west_ham <-  finance_final %>%
 # Wigan 
 wigan <-  finance_final %>%
     filter(team == "Wigan") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Wigan",
          x = "Season",
@@ -345,12 +345,12 @@ wigan <-  finance_final %>%
 # Wolves
 wolves <-  finance_final %>%
     filter(team == "Wolves") %>%
-    ggplot(aes(x = season, y = Finances, fill = type))+
-    geom_col(position = "stack")+
+    ggplot(aes(x = season, y = Finances, fill = type)) +
+    geom_col(position = "stack") +
     geom_point(aes(x = season, y = position)) +
     labs(title = "Amount of Money received by Wolves",
          x = "Season",
-         y = "Money Received ( Millions of Pounds)")+
+         y = "Money Received ( Millions of Pounds)") + 
     scale_fill_discrete(name = "Type")
 
 

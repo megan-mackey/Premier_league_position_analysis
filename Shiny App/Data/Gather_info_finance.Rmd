@@ -44,7 +44,7 @@ finance_join <- rbind(finance_2009_2010, finance_2010_2011, finance_2011_2012, f
 
 
 ```{r join with df_all}
-finance_joined <- inner_join(finance_join, df_all, by = c('team','season')) 
+finance_joined <- inner_join(finance_join, df_all, by = c('team', 'season')) 
 
 finance_selected <- finance_joined %>%
 filter(num_match == 38) %>%
@@ -53,7 +53,7 @@ select(season, num_match, team, `Total Payment`, position, `Equal Share Payments
 finance_final <- finance_selected %>%
 pivot_longer(names_to = "type", 
                values_to = "Finances", 
-               cols = c(`Equal Share Payments`,`Facility Fees`,`Merit Payment`))
+               cols = c(`Equal Share Payments`, `Facility Fees`, `Merit Payment`))
 
 
 

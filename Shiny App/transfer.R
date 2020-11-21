@@ -56,5 +56,4 @@ coord_flip() +
 # This provides some background information and a starting point for the viewer
 
 highest_transfer <- read_excel("Data/transfer.xlsx") %>%
-
     gt()
