@@ -18,6 +18,8 @@ library(recipes)
 library(yardstick)
 library(GPfit)
 
+# This RMD provides myself with some space to test models and see what works and what doesn't.
+
 data("processed_data_finance_edit.rda")
 ```
 

@@ -1,3 +1,5 @@
+# This contains some conclusions we can deduce from the premier league tab on the app for each team.
+
 # Arsenal text 
 
 arsenal_text <- "Facility fees have increased substantially over the period of time especially during the last two season we looked at. It went from 

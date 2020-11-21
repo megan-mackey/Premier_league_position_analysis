@@ -38,7 +38,7 @@ season_2014_2015 <- read_excel("season-2014-2015.xlsx")
 ```
 
 
-```{r}
+```{r joining the excel sheets together}
 finance_join <- rbind(finance_2009_2010, finance_2010_2011, finance_2011_2012, finance_2012_2013, finance_2013_2014, finance_2014_2015)
 ```
 

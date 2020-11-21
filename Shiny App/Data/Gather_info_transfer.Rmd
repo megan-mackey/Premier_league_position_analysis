@@ -20,7 +20,7 @@ library(yardstick)
 library(tune)
 ```
 
-```{r}
+```{r read in data for transfer}
 highest_transfer <- read_excel("transfer.xlsx") %>%
 rename(team = Team,
        highest_fee = `Transfer Record (Millions of Pounds)`)
@@ -28,7 +28,7 @@ rename(team = Team,
 transfer_final <- inner_join(finance_final, highest_transfer, by = "team")
 ```
 
-```{r}
+```{r create model for transfer and position}
 set.seed(10)
 transfer_split <- initial_split(transfer_final, prob = 0.80)
 transfer_train <- training(transfer_split)
@@ -63,7 +63,7 @@ labs( x = "Position", y = "Record Transfer Fee",
 ```
 
 
-```{r}
+```{r save}
 save(transfer_final, file = "processed_data_transfer.rda")
 ```
 

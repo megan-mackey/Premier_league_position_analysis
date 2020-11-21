@@ -1,9 +1,15 @@
+# load neccesary libraries
+
 library(tidyverse)
 library(ggplot2)
 
 
+# load the data file needed
 load("Data/processed_data_finance_edit.rda")
 
+
+# Each team has a graph under its name which shows how the payment they receive their total payment
+# and it also shows how their payment was categorized. 
 
 # Arsenal 
 arsenal <- finance_final %>%

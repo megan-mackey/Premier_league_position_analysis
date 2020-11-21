@@ -1,8 +1,12 @@
+# Load neccessary libraries
+
 library(tidyverse)
 library(tidymodels)
 library(ranger)
 
 load("Data/processed_data_finance_edit.rda")
+
+# Load neccessary data
 
 set.seed(10)
 
@@ -26,6 +30,8 @@ model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) +
   scale_x_continuous(breaks = c(1,5,10,15,20)) +
   labs(title = " Relationship between position and total payment")
 
+# This is already in the app.r file but includes the model for the app, the total payment and position
+
 
 cor_table <- finance_final %>% 
   group_by(season) %>% 
@@ -39,10 +45,14 @@ cor_table <- finance_final %>%
   tab_header(title = "Position and Total Payment per season",
              subtitle = "Strength of Relationship by Season")
 
+# This shows the correlation between the recipe used in the model. The correlation is displayed in a gt table
+
 
 comp_model <- stan_glm(data = finance_final, 
                        formula = `Total Payment` ~ position + team,
                        refresh = 0)
+
+# I used stan_glm to create  a posterior distribution of the two teams which I am comparing (Man United and Tottenham)
 
 comp_graph <- comp_model %>%
   as_tibble() %>%
@@ -65,3 +75,9 @@ comp_graph <- comp_model %>%
   scale_y_continuous(labels = scales::percent_format()) +
   theme_classic() +
   scale_fill_discrete(labels = c("Man United", "Tottenham"))
+
+# After fitting the model, I then created graph to show this. I needed to use the intercept
+# to create the man united payment and the same for Tottenham. I then pivoted longer because 
+# without it, the format means I would not be able to graph it. Using position = identity means
+# I can plot both teams side by side and compare.
+

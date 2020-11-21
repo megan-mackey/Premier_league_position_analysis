@@ -1,3 +1,5 @@
+# Load libraries
+
 library(tidyverse)
 library(readxl)
 library(ggplot2)
@@ -12,7 +14,13 @@ library(tune)
 library(gt)
 library(readxl)
 
+# Load data needed
+
 load("Data/processed_data_transfer.rda")
+
+# This is a model to show how highest transfer fee and position are linked. Similar to the 
+# model looking at total payment. This allows me to see the consequences of the total payment and how
+# it affects clubs ability to buy players.
 
 set.seed(10)
 transfer_split <- initial_split(transfer_final, prob = 0.80)
@@ -43,6 +51,9 @@ coord_flip() +
     labs( x = "Position", y = "Record Transfer Fee (Millions of Pounds)",
           title = "Relationship between position and record transfer fee",
           subtitle = " Source : https://www.transfermarkt.co.uk")
+
+# This creates a table which contains the record transfer fee paid for a player by a club.
+# This provides some background information and a starting point for the viewer
 
 highest_transfer <- read_excel("Data/transfer.xlsx") %>%
 
