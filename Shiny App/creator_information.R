@@ -8,10 +8,10 @@ p2 <- "Ultimately, the main takeaway from this analysis of the premier league is
 From the model, we can see that total payment increases as the league position decreases. There is a negative correlation. The data explains why so many teams who have just come up from the championship struggle to stay in
 the premier league, because the other teams have the financial help of the league from the previous season. This means they can spend more money on salaries, facilities and transfers."
 
-p3 <- " One of the consequences looked at from receiving the money for transfer and specifically the highest possible transfer of a player. A transfer is when money is exchanged for a player and we are looking at the highest number the club has paid during the model.
-As shown, there is evidence that position and highest transfer fee are linked and that I am not drawing at strings. So the conclusions drawn show that the money received is the affecting the amount of money spent on transfers."
+p3 <- " One of the consequences looked at from receiving the money was for transfers and specifically the highest possible transfer of a player. A transfer is when money is exchanged for a player and we are looking at the highest number the club has paid during the model.
+As shown, there is evidence that position and highest transfer fee are linked and this shows that I am not drawing at strings. So the conclusions drawn show that the money received is the affecting the amount of money spent on transfers."
 
-p4 <- "For the teams that are finishing in the top 6 , the money element is not something they worry about but the lower down the table the more they worry about the income and the consequences are obviously as they cannot spend on the team. The key for teams
+p4 <- "For the teams that are finishing in the top 6 , the money element is not something they worry about but the lower down the table the more they worry about the income. The consequences are obviously as they cannot spend income on the team. The key for teams
 is to break the cycle and move up the table because the money received even for a place higher is so important !!"
 
 
