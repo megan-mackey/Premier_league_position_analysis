@@ -5,8 +5,8 @@ account: megan-mackey
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3245282
-bundleId: 3895065
+bundleId: 3904223
 url: https://megan-mackey.shinyapps.io/Economic_consequences_pl/
-when: 1606138237.7856
+when: 1606304848.93029
 asMultiple: FALSE
 asStatic: FALSE
