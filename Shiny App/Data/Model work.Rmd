@@ -39,21 +39,10 @@ data("processed_data_finance_edit.rda")
   add_recipe(recipe(`Total Payment` ~ position + team,
            data = finance_train) %>%
              step_dummy(all_nominal()))%>%
-    fit(data = finance_test) %>%
-predict(new_data = finance_test)
 
-
-  
-  model <- ggplot(finance_test, aes(x = position, y = `Total Payment`)) +
-    geom_point(alpha = 0.2) + 
-geom_smooth(method = lm, formula = y ~ x, se = FALSE) +
-    scale_x_log10() + 
-    scale_y_log10() + 
-    labs(x = "Position in league", y = "Total Payment in millions (GBP)") +
-    labs(title = " Relationship between position and total payment") +
-scale_x_continuous(breaks = c(1,5,10,15,20))
-
-
+ fit_resamples(resamples = finance_folds,
+              control = control_resamples(save_pred = TRUE)) %>%
+  collect_metrics()
 
 ```
 

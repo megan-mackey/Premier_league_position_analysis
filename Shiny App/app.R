@@ -22,6 +22,7 @@ library(recipes)
 library(yardstick)
 library(tune)
 library(readr)
+library(gtsummary)
 # load necessary data and code from helper files, including pre-made plots and
 # tables to keep the server code below as clean and concise as possible
 
@@ -37,7 +38,7 @@ source("transfer.R")
 # Create UI
 
 ui <- navbarPage(
-    "Economic Analysis of league positon from 2009-2015",
+    "How important is your position in the english Premier League",
     tabPanel("The Premier League",
              fluidPage(
                  mainPanel(
@@ -140,16 +141,13 @@ ui <- navbarPage(
 # and record transfer. The final tab is the key takeaways.
 
     tabPanel("Significance of Project",
-             includeMarkdown("doc/intro.md"),
+             includeMarkdown("doc/intro.md")),
              
 # This markdown shows the significance of the projects and answers the 5 w's: who, what, where, when and why in regard to the project
 
-             
-             includeMarkdown("doc/source_part1.md")),
-
 # This markdown shows the data sources I used and provides acknowledgments too.
 
-    tabPanel("Creator Information", 
+    tabPanel("About", 
             h3("Project"),
            p(p1),
            p(p2),
@@ -158,11 +156,15 @@ ui <- navbarPage(
            
 # These are objects from the creator.information.R file, this shows information about some basic conclusions
 # on a whole we can draw from all the information discussed.
-           
-             h3("Project Information"),
+  
+includeMarkdown("doc/source_part1.md"),
+h3("Project Information"),
              p("If you're interested in learning more about the project or about myself, don't hesistate
-                                 to reach out through email at mmackey@college.harvard.edu, or visit my", a("GitHub Account", href="https://github.com/megan-mackey/Premier_league_position_analysis"), " page.
+                                 to reach out through email at megan.mackey01@gmail.com, or visit my", a("GitHub Account", href="https://github.com/megan-mackey/Premier_league_position_analysis"), " page.
                                  Thank you for visiting!")))
+
+
+# This markdown shows the data sources I used and provides acknowledgments too.
 
 
 # This provides some basic contact information for myself and then includes a hyperlink to my github account.

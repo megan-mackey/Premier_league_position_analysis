@@ -3,6 +3,7 @@
 library(tidyverse)
 library(tidymodels)
 library(ranger)
+library(gtsummary)
 
 load("Data/processed_data_finance_edit.rda")
 
@@ -32,18 +33,18 @@ model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) +
 
 # This is already in the app.r file but includes the model for the app, the total payment and position
 
+comp_model_1 <- stan_glm(data = finance_final, 
+                       formula = `Total Payment` ~ position,
+                       refresh = 0)
 
-cor_table <- finance_final %>% 
-  group_by(season) %>% 
-  summarize(cor = cor(position, `Total Payment`, use = "complete.obs"), .groups = "drop") %>%
-  mutate(cor = round(cor, digits = 2)) %>% 
-  gt() %>%
-  cols_label(season = md("**Season**"),
-             cor = md("**Correlation Coefficient**")) %>%
-  cols_align(columns = "season", align = "left") %>% 
-  tab_options(container.height = 535) %>% 
-  tab_header(title = "Position and Total Payment per season",
-             subtitle = "Strength of Relationship by Season")
+# This allows us to create a gt table with confidence interval just for position
+
+cor_table <- tbl_regression(comp_model_1, exponentiate = TRUE) %>%
+  modify_table_header(column = estimate,
+                      label = "**Beta**") %>%
+  as_gt() %>%
+  tab_header(title  = "Regression of Total Payment",
+             subtitle = "The Effect of position on money recieved") 
 
 # This shows the correlation between the recipe used in the model. The correlation is displayed in a gt table
 
@@ -69,7 +70,7 @@ comp_graph <- comp_model %>%
                  position = "identity") +
   labs(title = "Posterior Probability Distribution",
        subtitle = "Comparing Tottenham and Man United",
-       x = "Average  Payment received",
+       x = "Average  Payment received (Millions of Pounds)",
        y = "Probability") + 
   scale_x_continuous(labels = scales::number_format()) +
   scale_y_continuous(labels = scales::percent_format()) +
@@ -80,4 +81,21 @@ comp_graph <- comp_model %>%
 # to create the man united payment and the same for Tottenham. I then pivoted longer because 
 # without it, the format means I would not be able to graph it. Using position = identity means
 # I can plot both teams side by side and compare.
+
+# In order to see if the data fits well we can find the RMSE value.
+
+finance_rec <- workflow() %>%
+  add_model(linear_reg() %>% 
+              set_engine("lm") %>% 
+              set_mode("regression")) %>%
+  add_recipe(recipe(`Total Payment` ~ position + team,
+                    data = finance_train) %>%
+               step_dummy(all_nominal()))%>%
+  
+  fit_resamples(resamples = finance_folds,
+                control = control_resamples(save_pred = TRUE)) %>%
+  collect_metrics()
+
+# There is a low rmse value which is more desirable because this shows the data fits well and 
+# there is a higher accuracy
 
