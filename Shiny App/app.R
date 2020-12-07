@@ -162,7 +162,7 @@ ui <- navbarPage(
 includeMarkdown("doc/source_part1.md"),
 h3("Project Information"),
              p("If you're interested in learning more about the project or about myself, don't hesistate
-                                 to reach out through email at megan.mackey01@gmail.com, or visit my", a("GitHub Account", href="https://github.com/megan-mackey/Premier_league_position_analysis"), " page.
+                                 to reach out through email at megan.mackey01@gmail.com, or visit my", a("GitHub Account", href="https://github.com/megan-mackey"), " page.
                                  Thank you for visiting!")))
 
 
