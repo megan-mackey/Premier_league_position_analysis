@@ -38,7 +38,7 @@ source("transfer.R")
 # Create UI
 
 ui <- navbarPage(
-    "How important is your position in the english Premier League",
+    "How important is league finish in the english Premier League",
     tabPanel("The Premier League",
              fluidPage(
                  mainPanel(
@@ -112,9 +112,11 @@ ui <- navbarPage(
 # This model markdown defines some of the terminology used in the graph and finds some basic background information
 # to add understanding
 
-    tabPanel("Relationship between payment and position",
+    tabPanel("Model",
              fluidPage(mainPanel(tabsetPanel(type = "tabs",
-                                            tabPanel("Correlation Table", gt_output("cor_table")),
+                                            tabPanel("Correlation Table",
+                                                     p("In order to find the average position of each team in the middle you add the position parameter to the value associated with the team"),
+                                                       gt_output("cor_table")),
                                             tabPanel("Plot",
                                                           plotlyOutput("model")),
                                             tabPanel("Comparison", 
@@ -248,11 +250,11 @@ output$Money <- renderPlotly({
   
     output$Money_text <- renderText({
 
-" Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time. Teams who only stay in the league for one season such as Portsmouth, are heavily reliant on the money received from the last season in the Championship, it do not have the economic power to cause much change in league position such as buy the best players out there.
+" Teams who have the odd season bad season and are still in the league are able to recover due to the cumulative income received over time.
 Teams lower down in the table rely more on equal share payments as they receive less merit payments and facility fees.
 Teams who stay in the Premier league for longer have increased facility fees over time. This is attributed to increased global exposure, more people are wanting to watch them play and hence more games are broadcasted. This is extra income for those teams.
-As well as staying in the league, consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming seasons and if they are lucky to stay in the league, they cannot plan how to improve until season is finished. So finishing in a position which is higher or the same as before can be important.
-Teams at the end of the model receive more money in general no matter what positon the team finishes in. This means for some teams it is even more important to stay in the league as the gap between money the league grows. 
+Consistency in position is key. Flucuations seen in many teams lower down the table means teams cannot prepare for the upcoming season. 
+Teams at the end of the model receive more money in general no matter what positon the team as there was increase investment in league.
 There is less one season teams the further into the model you go. This causes us to question the teams and their management of their cumulative income of previous seasons. But also, teams could perform better knowing what is at risk if they get relegated."
     })  
     

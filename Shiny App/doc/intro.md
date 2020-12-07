@@ -25,16 +25,16 @@ How are we going to do this? I have collated data from the seasons specified abo
 
 <center><h3> Possible Limitations </h3></center>
 
-Information selection bias – I have selected the data myself and I have gone out to find the data which links to the question I want to answer. This means there is a possible selection bias
+Information selection bias : I have selected the data myself and I have gone out to find the data which links to the question I want to answer. This means there is a possible selection bias
 
 
-Data presentation- I have elected to not sure all the data in the data set I have selected; this is because it would be a lot to clean but also mainly because it would just cause an information overload for the viewer.
+Data presentation : I have elected to not sure all the data in the data set I have selected; this is because it would be a lot to clean but also mainly because it would just cause an information overload for the viewer.
 
 
-Time Constraints – Time available to study this model is constrained to a deadline, this may mean I might not have time to analyze everything
+Time Constraints : Time available to study this model is constrained to a deadline, this may mean I might not have time to analyze everything
 
 
-Data Availability - I would have liked to look at more seasons especially pre 2009-2010 because this is the time when finance in the game really sky rocketed but due to availability this is not possible and also the data is relevant to my question, all the assumptions will not be 100 % accurate.
+Data Availability : I would have liked to look at more seasons especially pre 2009-2010 because this is the time when finance in the game really sky rocketed but due to availability this is not possible and also the data is relevant to my question, all the assumptions will not be 100 % accurate.
 
 <br>
 <br>

@@ -48,7 +48,7 @@ predict_graph <- predictions %>%
     geom_point(alpha = .15) +
     geom_abline(col = "red") +
 coord_flip() +
-    labs( x = "Position", y = "Record Transfer Fee (Millions of Pounds)",
+    labs( x = "Position", y = "Predicted",
           title = "Relationship between position and record transfer fee",
           subtitle = " Source : https://www.transfermarkt.co.uk")
 

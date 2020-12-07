@@ -1,6 +1,6 @@
 
 
-Before you view the model below, there are a few things which you should take into account.
+Before you view the model, there are a few things which you should take into account.
 
 1. Some teams are lucky that over the six seasons we are looking at, they have been present in the league whereas some teams are relegated and promoted to the league hence why some teams do not take into account all of the seasons.
 <br>

@@ -33,13 +33,11 @@ model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) +
 
 # This is already in the app.r file but includes the model for the app, the total payment and position
 
-comp_model_1 <- stan_glm(data = finance_final, 
-                       formula = `Total Payment` ~ position,
-                       refresh = 0)
+
 
 # This allows us to create a gt table with confidence interval just for position
 
-cor_table <- tbl_regression(comp_model_1, exponentiate = TRUE) %>%
+cor_table <- tbl_regression(comp_model, exponentiate = TRUE) %>%
   modify_table_header(column = estimate,
                       label = "**Beta**") %>%
   as_gt() %>%
