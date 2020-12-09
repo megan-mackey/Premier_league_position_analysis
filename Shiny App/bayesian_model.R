@@ -33,7 +33,9 @@ model <- ggplot(finance_train, aes(x = position, y = `Total Payment`)) +
 
 # This is already in the app.r file but includes the model for the app, the total payment and position
 
-
+comp_model <- stan_glm(data = finance_final, 
+                       formula = `Total Payment` ~ position + team,
+                       refresh = 0)
 
 # This allows us to create a gt table with confidence interval just for position
 
@@ -45,12 +47,6 @@ cor_table <- tbl_regression(comp_model, exponentiate = TRUE) %>%
              subtitle = "The Effect of position on money recieved") 
 
 # This shows the correlation between the recipe used in the model. The correlation is displayed in a gt table
-
-
-comp_model <- stan_glm(data = finance_final, 
-                       formula = `Total Payment` ~ position + team,
-                       refresh = 0)
-
 # I used stan_glm to create  a posterior distribution of the two teams which I am comparing (Man United and Tottenham)
 
 comp_graph <- comp_model %>%

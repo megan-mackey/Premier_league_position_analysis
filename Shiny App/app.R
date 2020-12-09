@@ -304,6 +304,7 @@ output$model <- renderPlotly({
 # and plot.
 
 output$model_1 <- renderPlotly({
+  
   comp_model <- stan_glm(data = finance_final, 
                          formula = `Total Payment` ~ position + team,
                          refresh = 0)
