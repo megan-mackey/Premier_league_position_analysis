@@ -1,0 +1,12 @@
+name: Premier_League_Analysis
+title: Premier_League_Analysis
+username:
+account: megan-mackey
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3372240
+bundleId: 3965513
+url: https://megan-mackey.shinyapps.io/Premier_League_Analysis/
+when: 1607516744.05882
+asMultiple: FALSE
+asStatic: FALSE

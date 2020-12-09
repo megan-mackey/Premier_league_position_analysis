@@ -304,7 +304,33 @@ output$model <- renderPlotly({
 # and plot.
 
 output$model_1 <- renderPlotly({
-  comp_graph 
+  comp_model <- stan_glm(data = finance_final, 
+                         formula = `Total Payment` ~ position + team,
+                         refresh = 0)
+  
+  # I used stan_glm to create  a posterior distribution of the two teams which I am comparing (Man United and Tottenham)
+  
+  comp_graph <- comp_model %>%
+    as_tibble() %>%
+    mutate(manu_payment = `(Intercept)` + `teamMan United`) %>%
+    mutate(tottenham_payment = `(Intercept)` + teamTottenham) %>%
+    select(manu_payment, tottenham_payment) %>% 
+    pivot_longer(cols = manu_payment:tottenham_payment, 
+                 names_to = "Team",
+                 values_to = "payment") %>% 
+    ggplot(aes(payment, fill = Team)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),
+                   alpha = 0.5, 
+                   bins = 100, 
+                   position = "identity") +
+    labs(title = "Posterior Probability Distribution",
+         subtitle = "Comparing Tottenham and Man United",
+         x = "Average  Payment received (Millions of Pounds)",
+         y = "Probability") + 
+    scale_x_continuous(labels = scales::number_format()) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    theme_classic() +
+    scale_fill_discrete(labels = c("Man United", "Tottenham"))
   
 # This object can be found on the bayesian_model.r file. It displays the comparison between two teams, Man United and 
   # Tottenham, both been in the model for the whole duration yet had different average positions.
