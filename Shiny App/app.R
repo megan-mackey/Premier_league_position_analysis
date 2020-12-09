@@ -38,7 +38,7 @@ source("transfer.R")
 # Create UI
 
 ui <- navbarPage(
-    "How important is league finish in the English Premier League",
+    "English Premier League : Does position matter ?",
     tabPanel("The Premier League",
              fluidPage(
                  mainPanel(
